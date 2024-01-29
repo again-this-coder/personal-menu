@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FC } from 'react';
-import HomeScreen from '../components/screens/Home/HomeScreen';
-import MenuScreen from '../components/screens/Menu/MenuScreen';
-import ProfileScreen from '../components/screens/Profile/ProfileScreen';
+import HomeScreen from '../screens/Home/HomeScreen';
+import MenuScreen from '../screens/Menu/MenuScreen';
+import ProfileScreen from '../screens/Profile/ProfileScreen';
 import { Screens } from './screens';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
