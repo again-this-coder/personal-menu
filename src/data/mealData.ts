@@ -7,6 +7,7 @@ export type MealType = {
   image: ImageSourcePropType;
   price?: number;
   id: number;
+  category: string;
 };
 
 export const mealsData = [
@@ -17,6 +18,7 @@ export const mealsData = [
     image: images.sushi,
     price: 800,
     id: 1,
+    category: "Доставка",
   },
   {
     title: "Гречка + омлет",
@@ -24,6 +26,7 @@ export const mealsData = [
       "Легка на шлунок гречка + смажене яйце з овочами до омлету + курочка",
     image: images.grechkaAndEgg,
     id: 2,
+    category: "Вдома",
   },
   {
     title: "Макарунс",
@@ -31,6 +34,7 @@ export const mealsData = [
     image: images.makaroons,
     price: 80,
     id: 3,
+    category: "Солодке",
   },
   {
     title: "Паста з Песто та куркою",
@@ -38,17 +42,20 @@ export const mealsData = [
       "Дуже смачна паста з песто та куркою, але дуже важко потім на шлунок від неї",
     image: images.pesto,
     id: 4,
+    category: "Вдома",
   },
   {
     title: "Млинець з сиром",
     description: "Вівсяний млинець (на смак фе)",
     image: images.pancakeWithCheese,
     id: 5,
+    category: "Вдома",
   },
   {
     title: "Картопля з шампіньйонами",
     description: "Дуже смачно, смак зелені топ",
     image: images.potatoShrooms,
     id: 6,
+    category: "Вдома",
   },
 ];

@@ -1,13 +1,46 @@
-import { View, Text } from "react-native";
-import React, { FC } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import React, { FC, useState } from "react";
 import { styles } from "./styles";
+import { categoriesData } from "./categoriesData";
+import { useSelector } from "react-redux";
+import { selectMeal } from "redux/reducers/meals/mealsSlice";
+import { MealType } from "src/data/mealData";
 
-const Categories: FC = () => {
+type Props = {
+  setData: (arg: MealType[]) => void;
+};
+
+const Categories: FC<Props> = ({ setData }) => {
+  const [activeCategory, setActiveCategory] = useState("Всі");
+
+  const meals = useSelector(selectMeal);
+
+  const handleActiveCategory = (name: string) => {
+    if (name === "Всі") {
+      setData(meals);
+    } else {
+      const newCategory = meals.filter(({ category }) => category === name);
+      setData(newCategory);
+    }
+    setActiveCategory(name);
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.category}>
-        <Text style={styles.text}>Categories</Text>
-      </View>
+      {categoriesData.map(({ id, category }) => {
+        return (
+          <TouchableOpacity
+            style={[
+              styles.category,
+              activeCategory === category && styles.activeColor,
+            ]}
+            key={id}
+            onPress={() => handleActiveCategory(category)}
+          >
+            <Text style={styles.text}>{category}</Text>
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 };
