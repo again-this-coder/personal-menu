@@ -14,7 +14,11 @@ import {
   getDocFromServer,
 } from "firebase/firestore";
 
-const MenuScreen: FC = () => {
+type Props = {
+  promptAsync: any;
+};
+
+const MenuScreen: FC<Props> = ({ promptAsync }) => {
   const { goBack } = useNavigation();
   const [username, setUsername] = useState("");
   const [email, setUserEmail] = useState("");
@@ -70,6 +74,10 @@ const MenuScreen: FC = () => {
         autoCapitalize="none"
       />
       <Button title="submitData" onPress={deleteData} />
+
+      <View>
+        <Button title="sign in with google" onPress={() => promptAsync()} />
+      </View>
     </View>
   );
 };

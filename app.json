@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "com.personalMenu",
+    "scheme": "personalMenu",
     "name": "personalMenu",
     "slug": "personalMenu",
     "version": "1.0.0",
@@ -10,19 +10,27 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.personalMenu"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.personalMenu"
     },
-    "web": {
-    },
+    "web": {},
     "experiments": {
       "tsconfigPaths": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3e345f34-a369-47ed-9811-8df61a550e54"
+      }
     }
   }
 }

@@ -22,7 +22,7 @@ const RootNavigation = () => {
       initialRouteName={Screens.LOGIN_SCREEN}
       screenOptions={{ headerShown: false }}
     >
-      {!user ? (
+      {user ? (
         <Stack.Screen
           name={Stacks.HOME_STACK}
           component={HomeStackNavigation}
