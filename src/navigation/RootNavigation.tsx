@@ -10,26 +10,18 @@ const RootNavigation = () => {
 
   const Stack = createNativeStackNavigator();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      console.log("user", user);
-      setUser(user);
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     setUser(user);
+  //   });
+  // }, []);
 
   return (
     <Stack.Navigator
-      initialRouteName={Screens.LOGIN_SCREEN}
+      initialRouteName={Screens.HOME_SCREEN}
       screenOptions={{ headerShown: false }}
     >
-      {user ? (
-        <Stack.Screen
-          name={Stacks.HOME_STACK}
-          component={HomeStackNavigation}
-        />
-      ) : (
-        <Stack.Screen name={Screens.LOGIN_SCREEN} component={Login} />
-      )}
+      <Stack.Screen name={Stacks.HOME_STACK} component={HomeStackNavigation} />
     </Stack.Navigator>
   );
 };

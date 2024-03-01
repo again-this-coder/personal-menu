@@ -16,6 +16,11 @@ import { auth } from "./FirebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import MenuScreen from "src/screens/Menu/MenuScreen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import FavoritesContextProvider from "store/context/favouritecontext";
+import ModalContextProvider from "store/context/modalContext";
+import { PaperProvider } from "react-native-paper";
+import ModalFabric from "src/components/Modal/Modal";
 
 const prefix = Linking.createURL("/");
 
@@ -42,31 +47,40 @@ export default function App() {
     }
   }, [response]);
 
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        console.log(JSON.stringify(user, null, 2));
-        setUserInfo(user);
-      } else {
-        console.log("else");
-      }
-    });
-    return () => unsub();
-  }, []);
+  // useEffect(() => {
+  //   const unsub = onAuthStateChanged(auth, async (user) => {
+  //     if (user) {
+  //       setUserInfo(user);
+  //     } else {
+  //       console.log("else");
+  //     }
+  //   });
+  //   return () => unsub();
+  // }, []);
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <Provider store={store}>
-        <NavigationContainer
-          linking={linking}
-          fallback={<Text>Loading...</Text>}
-        >
-          {userInfo ? (
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Provider store={store}>
+          <PaperProvider>
+            <ModalContextProvider>
+              <FavoritesContextProvider>
+                <NavigationContainer
+                  linking={linking}
+                  fallback={<Text>Loading...</Text>}
+                >
+                  {/* {userInfo ? (
             <RootNavigation />
           ) : (
             <MenuScreen promptAsync={promptAsync} />
-          )}
-        </NavigationContainer>
-      </Provider>
-    </GestureHandlerRootView>
+          )} */}
+                  <ModalFabric />
+                  <RootNavigation />
+                </NavigationContainer>
+              </FavoritesContextProvider>
+            </ModalContextProvider>
+          </PaperProvider>
+        </Provider>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }

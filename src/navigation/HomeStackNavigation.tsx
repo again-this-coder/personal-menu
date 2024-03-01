@@ -1,11 +1,10 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FC } from 'react';
-import HomeScreen from '../screens/Home/HomeScreen';
-import MenuScreen from '../screens/Menu/MenuScreen';
-import ProfileScreen from '../screens/Profile/ProfileScreen';
-import { Screens } from './screens';
-import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FC } from "react";
+import HomeScreen from "../screens/Home/HomeScreen";
+import MenuScreen from "../screens/Menu/MenuScreen";
+import ProfileScreen from "../screens/Profile/ProfileScreen";
+import { Screens } from "./screens";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 export const HomeStackNavigation: FC = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -22,7 +21,7 @@ export const HomeStackNavigation: FC = () => {
             <Ionicons
               name="home-outline"
               size={24}
-              color={focused ? color : 'black'}
+              color={focused ? color : "black"}
             />
           ),
         }}
@@ -35,7 +34,7 @@ export const HomeStackNavigation: FC = () => {
             <AntDesign
               name="calendar"
               size={24}
-              color={focused ? color : 'black'}
+              color={focused ? color : "black"}
             />
           ),
         }}
@@ -48,7 +47,7 @@ export const HomeStackNavigation: FC = () => {
             <Ionicons
               name="stats-chart-outline"
               size={24}
-              color={focused ? color : 'black'}
+              color={focused ? color : "black"}
             />
           ),
         }}
@@ -61,7 +60,7 @@ export const HomeStackNavigation: FC = () => {
             <AntDesign
               name="plus"
               size={24}
-              color={focused ? color : 'black'}
+              color={focused ? color : "black"}
             />
           ),
         }}

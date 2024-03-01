@@ -1,4 +1,4 @@
-import { View, Text, Button, Keyboard } from "react-native";
+import { View, Text, Button } from "react-native";
 import React, { FC, useEffect, useState } from "react";
 import { styles } from "./styles";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -40,19 +40,19 @@ const MenuScreen: FC<Props> = ({ promptAsync }) => {
     deleteDoc(doc(db, "users", "LA"));
   };
 
-  useEffect(() => {
-    const getData = async () => {
-      const response = await getDocFromServer(docRef);
-      if (response.exists()) {
-        console.log("Document data:", response.data());
-        setUserData(response.data());
-      } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    };
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const response = await getDocFromServer(docRef);
+  //     if (response.exists()) {
+  //       console.log("Document data:", response.data());
+  //       setUserData(response.data());
+  //     } else {
+  //       // docSnap.data() will be undefined in this case
+  //       console.log("No such document!");
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
   return (
     <View style={styles.container}>

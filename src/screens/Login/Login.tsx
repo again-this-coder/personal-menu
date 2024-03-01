@@ -24,7 +24,6 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log(response);
     } catch (e) {
       console.log(e);
       alert("Sign in failed: " + e);
@@ -41,7 +40,6 @@ const Login = () => {
         email,
         password
       );
-      console.log(response);
     } catch (e) {
       console.log(e);
       alert("Sign up failed: " + e);

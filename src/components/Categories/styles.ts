@@ -1,12 +1,16 @@
 import { StyleSheet } from "react-native";
 import { colors } from "src/assets/colors";
-import { scaleByHeight, scaleByWidth } from "src/assets/helpers";
+import { SCREEN_WIDTH, scaleByHeight, scaleByWidth } from "src/assets/helpers";
+import { textStyle } from "src/assets/typography";
 
 export const styles = StyleSheet.create({
   container: {
-    gap: 10,
+    width: SCREEN_WIDTH,
+    gap: scaleByWidth(20),
+  },
+  categoryContainer: {
+    gap: scaleByWidth(10),
     flexDirection: "row",
-    flexWrap: "wrap",
   },
   category: {
     borderWidth: scaleByWidth(1),
@@ -14,9 +18,12 @@ export const styles = StyleSheet.create({
     paddingVertical: scaleByHeight(10),
     borderRadius: scaleByWidth(6),
     alignItems: "center",
-    backgroundColor: '#e9eff2',
+    backgroundColor: "#e9eff2",
   },
   activeColor: {
     backgroundColor: colors.blue,
+  },
+  title: {
+    ...textStyle.titleS20W600,
   },
 });

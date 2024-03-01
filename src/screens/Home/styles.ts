@@ -7,11 +7,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     alignItems: "center",
-    paddingHorizontal: scaleByWidth(20),
+    paddingLeft: scaleByWidth(30),
   },
-  contentContainer: {
-    paddingHorizontal: scaleByWidth(20),
-  },
+  contentContainer: {},
   categories: {
     marginVertical: scaleByHeight(24),
   },

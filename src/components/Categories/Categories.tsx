@@ -1,10 +1,11 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { FC, useState } from "react";
 import { styles } from "./styles";
 import { categoriesData } from "./categoriesData";
 import { useSelector } from "react-redux";
 import { selectMeal } from "redux/reducers/meals/mealsSlice";
 import { MealType } from "src/data/mealData";
+import RoundMealCard from "../RoundMealCard/RoundMealCard";
 
 type Props = {
   setData: (arg: MealType[]) => void;
@@ -27,20 +28,30 @@ const Categories: FC<Props> = ({ setData }) => {
 
   return (
     <View style={styles.container}>
-      {categoriesData.map(({ id, category }) => {
-        return (
-          <TouchableOpacity
-            style={[
-              styles.category,
-              activeCategory === category && styles.activeColor,
-            ]}
-            key={id}
-            onPress={() => handleActiveCategory(category)}
-          >
-            <Text style={styles.text}>{category}</Text>
-          </TouchableOpacity>
-        );
-      })}
+      <View>
+        <Text style={styles.title}>Популярні категорії</Text>
+      </View>
+      <ScrollView
+        contentContainerStyle={styles.categoryContainer}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      >
+        {categoriesData.map(({ id, category }) => {
+          return (
+            <TouchableOpacity
+              style={[
+                styles.category,
+                activeCategory === category && styles.activeColor,
+              ]}
+              key={id}
+              onPress={() => handleActiveCategory(category)}
+            >
+              <Text style={styles.text}>{category}</Text>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
+      <RoundMealCard />
     </View>
   );
 };
