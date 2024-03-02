@@ -4,22 +4,33 @@ import { styles } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { images } from "src/assets/images";
 import { FavoriteContext } from "store/context/favouritecontext";
-import { ModalContext } from "store/context/modalContext";
+import { useQuery } from "@apollo/client";
+import { SWAPI_TEST } from "src/apollo/swapiQuery";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addFavorite,
+  removeFavorite,
+} from "redux/reducers/favorites/favorites";
 
 const RoundMealCard = () => {
   const [isFavoutrite, setIsFavourite] = useState(false);
-
+  const { loading, error, data } = useQuery(SWAPI_TEST);
+  const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
+  const dispatch = useDispatch();
+  console.log(favoriteMealIds);
+  // console.log(data);
   const testID = 1;
-  const modalContext = useContext(ModalContext);
 
   const favoriteContext = useContext(FavoriteContext);
   const handleAddToFavourite = (id: number) => {
-    favoriteContext.addFavorite(id);
+    dispatch(addFavorite({ id: id }));
+    // favoriteContext.addFavorite(id);
     setIsFavourite(!isFavoutrite);
   };
 
   const handleRemoveFromFavourite = (id: number) => {
-    favoriteContext.removeFavorite(id);
+    dispatch(removeFavorite({ id: id }));
+    // favoriteContext.removeFavorite(id);
     setIsFavourite(!isFavoutrite);
   };
 

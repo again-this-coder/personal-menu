@@ -21,6 +21,8 @@ import FavoritesContextProvider from "store/context/favouritecontext";
 import ModalContextProvider from "store/context/modalContext";
 import { PaperProvider } from "react-native-paper";
 import ModalFabric from "src/components/Modal/Modal";
+import { ApolloProvider } from "@apollo/client";
+import { apolloClient } from "src/apollo/clients";
 
 const prefix = Linking.createURL("/");
 
@@ -61,24 +63,21 @@ export default function App() {
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Provider store={store}>
-          <PaperProvider>
-            <ModalContextProvider>
-              <FavoritesContextProvider>
-                <NavigationContainer
-                  linking={linking}
-                  fallback={<Text>Loading...</Text>}
-                >
-                  {/* {userInfo ? (
-            <RootNavigation />
-          ) : (
-            <MenuScreen promptAsync={promptAsync} />
-          )} */}
-                  <ModalFabric />
-                  <RootNavigation />
-                </NavigationContainer>
-              </FavoritesContextProvider>
-            </ModalContextProvider>
-          </PaperProvider>
+          <ApolloProvider client={apolloClient}>
+            <PaperProvider>
+              <ModalContextProvider>
+                <FavoritesContextProvider>
+                  <NavigationContainer
+                    linking={linking}
+                    fallback={<Text>Loading...</Text>}
+                  >
+                    <ModalFabric />
+                    <RootNavigation />
+                  </NavigationContainer>
+                </FavoritesContextProvider>
+              </ModalContextProvider>
+            </PaperProvider>
+          </ApolloProvider>
         </Provider>
       </GestureHandlerRootView>
     </SafeAreaProvider>
