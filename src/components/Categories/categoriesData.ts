@@ -4,6 +4,10 @@ export const categoriesData = [
     category: "Всі",
   },
   {
+    id: 5,
+    category: "Улюблене",
+  },
+  {
     id: 2,
     category: "Вдома",
   },

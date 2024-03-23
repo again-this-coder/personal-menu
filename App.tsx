@@ -17,7 +17,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import MenuScreen from "src/screens/Menu/MenuScreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import FavoritesContextProvider from "store/context/favouritecontext";
 import ModalContextProvider from "store/context/modalContext";
 import { PaperProvider } from "react-native-paper";
 import ModalFabric from "src/components/Modal/Modal";
@@ -66,15 +65,13 @@ export default function App() {
           <ApolloProvider client={apolloClient}>
             <PaperProvider>
               <ModalContextProvider>
-                <FavoritesContextProvider>
-                  <NavigationContainer
-                    linking={linking}
-                    fallback={<Text>Loading...</Text>}
-                  >
-                    <ModalFabric />
-                    <RootNavigation />
-                  </NavigationContainer>
-                </FavoritesContextProvider>
+                <NavigationContainer
+                  linking={linking}
+                  fallback={<Text>Loading...</Text>}
+                >
+                  <ModalFabric />
+                  <RootNavigation />
+                </NavigationContainer>
               </ModalContextProvider>
             </PaperProvider>
           </ApolloProvider>

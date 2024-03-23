@@ -5,7 +5,6 @@ import { categoriesData } from "./categoriesData";
 import { useSelector } from "react-redux";
 import { selectMeal } from "redux/reducers/meals/mealsSlice";
 import { MealType } from "src/data/mealData";
-import RoundMealCard from "../RoundMealCard/RoundMealCard";
 
 type Props = {
   setData: (arg: MealType[]) => void;
@@ -15,15 +14,25 @@ const Categories: FC<Props> = ({ setData }) => {
   const [activeCategory, setActiveCategory] = useState("Всі");
 
   const meals = useSelector(selectMeal);
+  const favoriteMeals = useSelector((state) => state.favorites.ids);
 
   const handleActiveCategory = (name: string) => {
+    setActiveCategory(name);
+
+    if (name === "Улюблене") {
+      const newCategory = meals.filter((meal) =>
+        favoriteMeals.includes(meal.id)
+      );
+      setData(newCategory);
+      return;
+    }
+
     if (name === "Всі") {
       setData(meals);
     } else {
       const newCategory = meals.filter(({ category }) => category === name);
       setData(newCategory);
     }
-    setActiveCategory(name);
   };
 
   return (
@@ -51,7 +60,6 @@ const Categories: FC<Props> = ({ setData }) => {
           );
         })}
       </ScrollView>
-      <RoundMealCard />
     </View>
   );
 };

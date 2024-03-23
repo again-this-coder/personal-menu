@@ -5,8 +5,8 @@ import { textStyle } from "src/assets/typography";
 
 export const styles = StyleSheet.create({
   container: {
-    height: scaleByHeight(220),
-    width: scaleByWidth(140),
+    minHeight: scaleByHeight(220),
+    width: scaleByWidth(150),
     justifyContent: "flex-end",
   },
   contentContainer: {
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     top: scaleByHeight(8),
-    left: scaleByHeight(18),
+    left: scaleByHeight(23),
     position: "absolute",
     width: scaleByWidth(104),
     height: scaleByHeight(104),

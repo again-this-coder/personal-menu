@@ -6,6 +6,7 @@ export enum Screens {
   CALENDAR_SCREEN = "Calendar",
   ADD_NEW_SCREEN = "Add",
   LOGIN_SCREEN = "Login",
+  MEAL_DETAILS = "Meal details screen",
 }
 
 export enum Stacks {
