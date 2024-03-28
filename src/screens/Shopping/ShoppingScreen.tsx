@@ -1,11 +1,10 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useState } from "react";
 import {
   View,
   Text,
   SafeAreaView,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Keyboard,
   Platform,
   ScrollView,
 } from "react-native";
@@ -13,12 +12,22 @@ import { styles } from "./styles";
 import ShoppingList from "src/components/ShoppingList/ShoppingList";
 import { TextInput } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Formik } from "formik";
+import { shoppingItemValidationSchema } from "src/assets/validation"; // Import the validation schemas
+import { useDispatch } from "react-redux";
+import { addShoppingItem } from "redux/reducers/shopping/shoppingSlice";
 
 const ShoppingScreen: FC = () => {
   const [isVisibleFooter, setIsVisibleFooter] = useState(true);
+  const dispatch = useDispatch();
 
-  const handleAddItem = () => {
-    // Logic to handle adding item
+  const handleAddItem = (item, resetForm) => {
+    const shopItem = {
+      ...item,
+      id: Math.random(),
+    };
+    dispatch(addShoppingItem(shopItem));
+    resetForm(); // Reset the form values
   };
 
   const handleHideFooter = () => {
@@ -54,15 +63,41 @@ const ShoppingScreen: FC = () => {
           >
             <MaterialIcons name="keyboard-hide" size={30} />
           </TouchableOpacity>
-          <TextInput mode="outlined" label={"Продукт"} />
-          <TextInput
-            mode="outlined"
-            label={"Кількість"}
-            keyboardType="number-pad"
-          />
-          <TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
-            <Text style={styles.addButtonText}>Додати</Text>
-          </TouchableOpacity>
+          <Formik
+            initialValues={{ product: "", quantity: "" }}
+            onSubmit={(values, { resetForm }) => {
+              handleAddItem(values, resetForm); // Call your logic to add the item
+            }}
+            validationSchema={shoppingItemValidationSchema} // Use both schemas for validation
+          >
+            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+              <View>
+                <TextInput
+                  mode="outlined"
+                  label={"Продукт"}
+                  value={values.product}
+                  onChangeText={handleChange("product")}
+                  onBlur={handleBlur("product")}
+                />
+                <Text style={styles.errorText}>{errors.product}</Text>
+                <TextInput
+                  mode="outlined"
+                  label={"Кількість"}
+                  value={values.quantity}
+                  onChangeText={handleChange("quantity")}
+                  onBlur={handleBlur("quantity")}
+                  keyboardType="numeric"
+                />
+                <Text style={styles.errorText}>{errors.quantity}</Text>
+                <TouchableOpacity
+                  style={styles.addButton}
+                  onPress={handleSubmit}
+                >
+                  <Text style={styles.addButtonText}>Додати</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </Formik>
         </KeyboardAvoidingView>
       )}
     </SafeAreaView>

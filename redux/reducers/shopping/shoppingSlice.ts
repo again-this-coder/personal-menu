@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const shoppingSlice = createSlice({
-  name: "Shopping",
+  name: "shopping",
   initialState: {
     shopItems: [],
   },
@@ -10,7 +10,9 @@ const shoppingSlice = createSlice({
       state.shopItems.push(action.payload);
     },
     removeShoppingItem: (state, action) => {
-      state.shopItems.splice(state.shopItems.indexOf(action.payload.id), 1);
+      state.shopItems = state.shopItems.filter(
+        (item) => item.id !== action.payload
+      );
     },
   },
 });

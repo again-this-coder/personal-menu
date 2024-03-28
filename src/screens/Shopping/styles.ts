@@ -44,4 +44,7 @@ export const styles = StyleSheet.create({
     right: 0,
     zIndex: 10,
   },
+  errorText: {
+    color: colors.red,
+  },
 });
