@@ -1,9 +1,9 @@
 export enum Screens {
   HOME_SCREEN = "Home",
   MENU_SCREEN = "Menu screen",
-  PROFILE_SCREEN = "Profile Screen",
+  PROFILE_SCREEN = "Profile",
   STATISCTICS_SCREEN = "Statistic",
-  CALENDAR_SCREEN = "Calendar",
+  SHOPPING_SCREEN = "Shopping",
   ADD_NEW_SCREEN = "Add",
   LOGIN_SCREEN = "Login",
   MEAL_DETAILS = "Meal details screen",

@@ -4,7 +4,12 @@ import HomeScreen from "../screens/Home/HomeScreen";
 import MenuScreen from "../screens/Menu/MenuScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import { Screens } from "./screens";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
+import ShoppingScreen from "src/screens/Shopping/ShoppingScreen";
 export const HomeStackNavigation: FC = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -27,12 +32,12 @@ export const HomeStackNavigation: FC = () => {
         }}
       />
       <Tab.Screen
-        name={Screens.CALENDAR_SCREEN}
-        component={MenuScreen}
+        name={Screens.SHOPPING_SCREEN}
+        component={ShoppingScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <AntDesign
-              name="calendar"
+            <MaterialCommunityIcons
+              name="cart-outline"
               size={24}
               color={focused ? color : "black"}
             />
@@ -40,18 +45,19 @@ export const HomeStackNavigation: FC = () => {
         }}
       />
       <Tab.Screen
-        name={Screens.STATISCTICS_SCREEN}
+        name={Screens.PROFILE_SCREEN}
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
-              name="stats-chart-outline"
+              name="person-outline"
               size={24}
               color={focused ? color : "black"}
             />
           ),
         }}
       />
+
       <Tab.Screen
         name={Screens.ADD_NEW_SCREEN}
         component={ProfileScreen}

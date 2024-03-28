@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { normalize } from "./helpers";
 
-export const textStyle = StyleSheet.create({
+const textStyle = StyleSheet.create({
   titleS30W800: {
     fontSize: normalize(30),
     fontWeight: "800",
@@ -19,3 +19,4 @@ export const textStyle = StyleSheet.create({
     fontWeight: "500",
   },
 });
+export default textStyle;

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { colors } from "src/assets/colors";
 import { SCREEN_WIDTH, scaleByHeight, scaleByWidth } from "src/assets/helpers";
-import { textStyle } from "src/assets/typography";
+import textStyle from "src/assets/typography";
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
   categoryContainer: {
     gap: scaleByWidth(10),
     flexDirection: "row",
+    paddingRight: scaleByWidth(40),
   },
   category: {
     borderWidth: scaleByWidth(1),

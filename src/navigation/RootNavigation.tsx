@@ -25,7 +25,7 @@ const RootNavigation = () => {
       initialRouteName={Screens.HOME_SCREEN}
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name={Screens.PROFILE_SCREEN} component={ProfileScreen} />
+      {/* <Stack.Screen name={Screens.PROFILE_SCREEN} component={ProfileScreen} /> */}
       <Stack.Screen name={Stacks.HOME_STACK} component={HomeStackNavigation} />
       <Stack.Screen
         name={Screens.MEAL_DETAILS}
