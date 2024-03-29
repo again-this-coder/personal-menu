@@ -8,6 +8,7 @@ export type MealType = {
   price?: number;
   id: number;
   category: string;
+  recipe: string[];
 };
 
 export const mealsData = [
@@ -29,6 +30,7 @@ export const mealsData = [
     id: 1,
     category: "Вдома",
     time: 4,
+    recipe: ["Гречка", "Яйце", "Хліб", "Морожені овочі"],
   },
   {
     title: "Макарунс",

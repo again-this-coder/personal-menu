@@ -18,5 +18,9 @@ const textStyle = StyleSheet.create({
     fontSize: normalize(16),
     fontWeight: "500",
   },
+  titleS18W500: {
+    fontSize: normalize(18),
+    fontWeight: "500",
+  },
 });
 export default textStyle;

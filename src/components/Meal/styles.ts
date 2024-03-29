@@ -9,7 +9,9 @@ import {
 import textStyle from "src/assets/typography";
 
 export const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginBottom: scaleByHeight(60),
+  },
   imageContainer: {
     padding: scaleByWidth(24),
     height: SCREEN_HEIGHT * 0.45,
@@ -57,5 +59,47 @@ export const styles = StyleSheet.create({
   price: {
     ...textStyle.titleS30W800,
     color: "red",
+  },
+  ingredientContainer: {
+    borderRadius: 14,
+    backgroundColor: colors.pink,
+    padding: scaleByWidth(24),
+    marginTop: scaleByHeight(14),
+    gap: scaleByHeight(10),
+    justifyContent: "center",
+  },
+  ingredientText: {
+    ...textStyle.titleS20W600,
+  },
+  addIngredient: {
+    ...textStyle.titleS16W500,
+  },
+  ingredient: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  listButton: {
+    marginTop: scaleByHeight(24),
+    paddingVertical: scaleByHeight(12),
+    alignSelf: "center",
+    backgroundColor: colors.blue,
+    paddingHorizontal: scaleByWidth(36),
+    borderRadius: 14,
+  },
+  listButtonText: {
+    ...textStyle.titleS16W500,
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    gap: scaleByWidth(10),
+  },
+  quantity: {
+    ...textStyle.titleS18W500,
+  },
+  rightSide: {
+    flexDirection: "row",
+    gap: scaleByWidth(20),
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
