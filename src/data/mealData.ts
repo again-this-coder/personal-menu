@@ -8,7 +8,7 @@ export type MealType = {
   price?: number;
   id: number;
   category: string;
-  recipe: string[];
+  recipe?: string[];
 };
 
 export const mealsData = [

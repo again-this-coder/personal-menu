@@ -14,9 +14,17 @@ const shoppingSlice = createSlice({
         (item) => item.id !== action.payload
       );
     },
+    updateShoppingItem: (state, action) => {
+      const { id, quantity } = action.payload;
+      const itemToUpdate = state.shopItems.find((item) => item.id === id);
+      if (itemToUpdate) {
+        itemToUpdate.quantity = quantity;
+      }
+    },
   },
 });
 
-export const { addShoppingItem, removeShoppingItem } = shoppingSlice.actions;
+export const { addShoppingItem, removeShoppingItem, updateShoppingItem } =
+  shoppingSlice.actions;
 
 export default shoppingSlice.reducer;

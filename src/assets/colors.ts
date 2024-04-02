@@ -8,4 +8,5 @@ export const colors = {
   blue2: "#a5ddff",
   blueFaded: "#efefef",
   red: "#d61b1e",
+  blueLight: "#e3eff27a",
 };
