@@ -58,11 +58,12 @@ export const styles = StyleSheet.create({
   },
   price: {
     ...textStyle.titleS30W800,
-    color: "red",
+    color: colors.red,
   },
   ingredientContainer: {
+    borderWidth: 1,
     borderRadius: 14,
-    backgroundColor: colors.pink,
+    backgroundColor: colors.blueLight,
     padding: scaleByWidth(24),
     marginTop: scaleByHeight(14),
     gap: scaleByHeight(10),
