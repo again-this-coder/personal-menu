@@ -10,6 +10,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import ShoppingScreen from "src/screens/Shopping/ShoppingScreen";
+import AddMealScreen from "src/screens/Add/AddMealScreen";
 export const HomeStackNavigation: FC = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -60,7 +61,7 @@ export const HomeStackNavigation: FC = () => {
 
       <Tab.Screen
         name={Screens.ADD_NEW_SCREEN}
-        component={ProfileScreen}
+        component={AddMealScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
             <AntDesign
