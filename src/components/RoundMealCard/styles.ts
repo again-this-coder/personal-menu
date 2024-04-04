@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { colors } from "src/assets/colors";
 import { scaleByHeight, scaleByWidth } from "src/assets/helpers";
-import textStyle  from "src/assets/typography";
+import textStyle from "src/assets/typography";
 
 export const styles = StyleSheet.create({
   container: {
@@ -28,7 +28,9 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   footerLeft: {
-    gap: scaleByHeight(6),
+    flexDirection: "row",
+    gap: scaleByHeight(10),
+    alignItems: "center",
   },
   title: {
     ...textStyle.titleS16W500,

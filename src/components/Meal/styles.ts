@@ -87,6 +87,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: scaleByWidth(36),
     borderRadius: 14,
   },
+  buttonDisabled: {
+    backgroundColor: colors.fadedGrey,
+  },
   listButtonText: {
     ...textStyle.titleS16W500,
   },
