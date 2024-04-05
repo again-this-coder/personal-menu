@@ -6,4 +6,6 @@ export const images = {
   pancakeWithCheese: require("./images/pancakeWithCheese.jpg"),
   potatoShrooms: require("./images/potatoShrooms.jpg"),
   emptyCart: require("./images/emptyCart.png"),
+  chefMale: require("./images/chefMale.png"),
+  chefFemale: require("./images/chefFemale.png"),
 };

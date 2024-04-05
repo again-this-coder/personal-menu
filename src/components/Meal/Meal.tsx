@@ -27,7 +27,7 @@ export const Meal: FC<MealType> = ({
     newQuantities[index].quantity++;
     setIngredientQuantities(newQuantities);
   };
-  const isButtonDisabled = ingredientQuantities.every(
+  const isButtonDisabled = ingredientQuantities?.every(
     (item) => item.quantity === 0
   );
 
@@ -100,13 +100,15 @@ export const Meal: FC<MealType> = ({
           })}
         </View>
       )}
-      <TouchableOpacity
-        style={[styles.listButton, isButtonDisabled && styles.buttonDisabled]}
-        onPress={handleAddItem}
-        disabled={isButtonDisabled}
-      >
-        <Text style={styles.listButtonText}>Додати до списку покупок</Text>
-      </TouchableOpacity>
+      {ingredientQuantities?.length && (
+        <TouchableOpacity
+          style={[styles.listButton, isButtonDisabled && styles.buttonDisabled]}
+          onPress={handleAddItem}
+          disabled={isButtonDisabled}
+        >
+          <Text style={styles.listButtonText}>Додати до списку покупок</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
