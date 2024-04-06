@@ -22,4 +22,17 @@ export const styles = StyleSheet.create({
   contentWrapper: {
     gap: scaleByHeight(12),
   },
+  about: {
+    alignSelf: "flex-start",
+    width: "auto",
+    borderBottomWidth: 1,
+  },
+  left: {
+    ...textStyle.titleS20W600,
+  },
+  logoutText: {
+    ...textStyle.titleS20W600,
+    color: colors.blue,
+    textDecorationLine: "underline",
+  },
 });

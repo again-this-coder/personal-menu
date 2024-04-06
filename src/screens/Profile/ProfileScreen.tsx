@@ -1,9 +1,16 @@
-import { SafeAreaView, Image, Text, View } from "react-native";
+import {
+  SafeAreaView,
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import React, { FC } from "react";
 import { styles } from "./styles";
 import UserInfo from "src/components/UserInfo/UserInfo";
 import { images } from "src/assets/images";
 import Language from "src/components/Language/Language";
+import RowItem from "src/components/ProfileRowItem/RowItem";
 
 const ProfileScreen: FC = () => {
   const gender = "male";
@@ -19,6 +26,16 @@ const ProfileScreen: FC = () => {
       <View style={styles.contentWrapper}>
         <UserInfo />
         <Language />
+
+        <TouchableOpacity style={styles.about}>
+          <Text style={styles.left}>About</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.about}>
+          <Text style={styles.left}>Report issue</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.logoutText}>Log out</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

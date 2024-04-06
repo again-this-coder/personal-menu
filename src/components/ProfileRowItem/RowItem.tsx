@@ -11,7 +11,7 @@ type Props = {
 const RowItem: FC<Props> = ({ label, value, underline }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.left}>{label}:</Text>
+      <Text style={styles.left}>{label} :</Text>
       <Text style={[styles.right, underline && styles.underline]}>{value}</Text>
     </View>
   );

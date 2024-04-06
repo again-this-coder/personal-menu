@@ -2,24 +2,31 @@ import { View, Text } from "react-native";
 import React from "react";
 import SelectDropdown from "react-native-select-dropdown";
 import { styles } from "./styles";
+import i18next from "services/i18n";
+import { useTranslation } from "react-i18next";
+import languages from "locales/languages";
+import { saveLanguage } from "locales/detectLanguage";
 
 const Language = () => {
-  const testData = [{ title: "Українська" }, { title: "English" }];
+  const { t } = useTranslation();
+
+  const handleChangeLanguage = (newLanguage: string) => {
+    i18next.changeLanguage(newLanguage);
+    saveLanguage(newLanguage);
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Мова :</Text>
+      <Text style={styles.label}>{t("language")}</Text>
       <SelectDropdown
-        data={testData}
-        onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index);
-        }}
-        renderButton={(selectedItem) => {
+        data={languages}
+        onSelect={(selectedLanguage) =>
+          handleChangeLanguage(selectedLanguage.initials)
+        }
+        renderButton={(selectedLanguage) => {
           return (
             <View style={styles.dropdownButtonStyle}>
-              <Text style={styles.dropdownButtonTxtStyle}>
-                {(selectedItem && selectedItem.title) || "Select"}
-              </Text>
+              <Text style={styles.dropdownButtonTxtStyle}>{t("langName")}</Text>
             </View>
           );
         }}
