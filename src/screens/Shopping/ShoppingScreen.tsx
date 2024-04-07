@@ -19,12 +19,13 @@ import {
   addShoppingItem,
   updateShoppingItem,
 } from "redux/reducers/shopping/shoppingSlice";
+import { useTranslation } from "react-i18next";
 
 const ShoppingScreen: FC = () => {
   const [isVisibleFooter, setIsVisibleFooter] = useState(true);
   const dispatch = useDispatch();
   const shoppingList = useSelector((state) => state.shopping.shopItems);
-
+  const { t } = useTranslation();
   const handleAddItem = (item, resetForm) => {
     // Convert the product name to lowercase to make the comparison case insensitive
     const productName = item.product.toLowerCase();
@@ -67,12 +68,12 @@ const ShoppingScreen: FC = () => {
         keyboardShouldPersistTaps="handled"
       >
         <View>
-          <Text style={styles.title}>Список покупок</Text>
+          <Text style={styles.title}>{t("shoppingScreen.name")}</Text>
           <ShoppingList />
         </View>
         {!isVisibleFooter && (
           <TouchableOpacity style={styles.addButton} onPress={handleHideFooter}>
-            <Text style={styles.addButtonText}>Показати</Text>
+            <Text style={styles.addButtonText}>{t("shoppingScreen.show")}</Text>
           </TouchableOpacity>
         )}
       </ScrollView>
@@ -99,7 +100,7 @@ const ShoppingScreen: FC = () => {
               <View>
                 <TextInput
                   mode="outlined"
-                  label={"Продукт"}
+                  label={t('shoppingScreen.productField')}
                   value={values.product}
                   onChangeText={handleChange("product")}
                   onBlur={handleBlur("product")}
@@ -107,7 +108,7 @@ const ShoppingScreen: FC = () => {
                 <Text style={styles.errorText}>{errors.product}</Text>
                 <TextInput
                   mode="outlined"
-                  label={"Кількість"}
+                  label={t('shoppingScreen.quantityField')}
                   value={values.quantity}
                   onChangeText={handleChange("quantity")}
                   onBlur={handleBlur("quantity")}
@@ -118,7 +119,9 @@ const ShoppingScreen: FC = () => {
                   style={styles.addButton}
                   onPress={handleSubmit}
                 >
-                  <Text style={styles.addButtonText}>Додати</Text>
+                  <Text style={styles.addButtonText}>
+                    {t("shoppingScreen.addButton")}
+                  </Text>
                 </TouchableOpacity>
               </View>
             )}

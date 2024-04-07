@@ -9,11 +9,11 @@ const UserInfo: FC = () => {
   const genderFromBackend = "female";
   return (
     <View style={styles.container}>
-      <RowItem underline label="Email" value="again.this.coder@gmail.com" />
-      <RowItem label="Gender" value={t(`gender.${genderFromBackend}`)} />
-      <RowItem label="Meals Created" value={"8"} />
-      <RowItem label="Rated meals" value={"44"} />
-      <RowItem label="My average grade" value={"4.2"} />
+      <RowItem underline label={t('profile.email')} value="again.this.coder@gmail.com" />
+      <RowItem label={t('profile.gender2')} value={t(`profile.gender.${genderFromBackend}`)} />
+      <RowItem label={t('profile.mealsCreated')} value={"8"} />
+      <RowItem label={t('profile.ratedMeals')} value={"44"} />
+      <RowItem label={t("profile.avGrade")} value={"4.2"} />
     </View>
   );
 };

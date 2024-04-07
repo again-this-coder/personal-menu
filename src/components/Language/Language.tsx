@@ -17,7 +17,7 @@ const Language = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{t("language")}</Text>
+      <Text style={styles.label}>{t("profile.language")}</Text>
       <SelectDropdown
         data={languages}
         onSelect={(selectedLanguage) =>
@@ -26,7 +26,7 @@ const Language = () => {
         renderButton={(selectedLanguage) => {
           return (
             <View style={styles.dropdownButtonStyle}>
-              <Text style={styles.dropdownButtonTxtStyle}>{t("langName")}</Text>
+              <Text style={styles.dropdownButtonTxtStyle}>{t("profile.langName")}</Text>
             </View>
           );
         }}

@@ -11,8 +11,10 @@ import {
 } from "@expo/vector-icons";
 import ShoppingScreen from "src/screens/Shopping/ShoppingScreen";
 import AddMealScreen from "src/screens/Add/AddMealScreen";
+import { useTranslation } from "react-i18next";
 export const HomeStackNavigation: FC = () => {
   const Tab = createBottomTabNavigator();
+  const { t } = useTranslation();
   return (
     <Tab.Navigator
       screenOptions={() => ({
@@ -20,7 +22,7 @@ export const HomeStackNavigation: FC = () => {
       })}
     >
       <Tab.Screen
-        name={Screens.HOME_SCREEN}
+        name={t("navigation.home")}
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -33,7 +35,7 @@ export const HomeStackNavigation: FC = () => {
         }}
       />
       <Tab.Screen
-        name={Screens.SHOPPING_SCREEN}
+        name={t("navigation.shopping")}
         component={ShoppingScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -46,7 +48,7 @@ export const HomeStackNavigation: FC = () => {
         }}
       />
       <Tab.Screen
-        name={Screens.PROFILE_SCREEN}
+        name={t("navigation.profile")}
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -60,7 +62,7 @@ export const HomeStackNavigation: FC = () => {
       />
 
       <Tab.Screen
-        name={Screens.ADD_NEW_SCREEN}
+        name={t("navigation.add")}
         component={AddMealScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (

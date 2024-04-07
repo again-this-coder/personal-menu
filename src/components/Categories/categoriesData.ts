@@ -1,22 +1,22 @@
 export const categoriesData = [
   {
     id: 1,
-    category: "Всі",
+    category: "all",
   },
   {
     id: 5,
-    category: "Улюблене",
+    category: "favorite",
   },
   {
     id: 2,
-    category: "Вдома",
+    category: "home",
   },
   {
     id: 3,
-    category: "Доставка",
+    category: "delivery",
   },
   {
     id: 4,
-    category: "Солодке",
+    category: "dessert",
   },
 ];
