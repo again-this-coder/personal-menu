@@ -15,6 +15,7 @@ import {
 } from "redux/reducers/favorites/favorites";
 import { useNavigation } from "@react-navigation/native";
 import { Screens } from "src/navigation/screens";
+import { useTranslation } from "react-i18next";
 
 export type RoundMealTypes = {
   id: number;
@@ -27,6 +28,7 @@ const RoundMealCard: FC<RoundMealTypes> = ({ title, image, time, id }) => {
   const isFavorite = useSelector((state) => state.favorites.ids.includes(id));
   const dispatch = useDispatch();
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
 
   const handleAddToFavourite = (id: number) => {
     dispatch(addFavorite({ id: id }));
@@ -55,7 +57,7 @@ const RoundMealCard: FC<RoundMealTypes> = ({ title, image, time, id }) => {
           <Text style={styles.title}>{title}</Text>
           <View style={styles.footer}>
             <View style={styles.footerLeft}>
-              <Text style={styles.time}>Time</Text>
+              <Text style={styles.time}>{t("meal.time")}</Text>
               <Text>{time}</Text>
             </View>
             <TouchableOpacity

@@ -6,10 +6,12 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { images } from "src/assets/images";
 import { useDispatch, useSelector } from "react-redux";
 import { removeShoppingItem } from "redux/reducers/shopping/shoppingSlice";
+import { useTranslation } from "react-i18next";
 
 const ShoppingList: FC = () => {
   const shoppingList = useSelector((state) => state.shopping.shopItems);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleRemoveFromList = (id) => {
     dispatch(removeShoppingItem(id));
@@ -20,7 +22,7 @@ const ShoppingList: FC = () => {
       {!shoppingList.length ? (
         <View>
           <Image source={images.emptyCart} style={styles.image} />
-          <Text style={styles.emptyTitle}>Список покупок наразі пустий</Text>
+          <Text style={styles.emptyTitle}>{t("shoppingScreen.title")}</Text>
         </View>
       ) : (
         shoppingList.map((item, index) => {

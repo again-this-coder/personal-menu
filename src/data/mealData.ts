@@ -19,7 +19,7 @@ export const mealsData = [
     image: images.sushi,
     price: 800,
     id: 0,
-    category: "Доставка",
+    category: "delivery",
     time: 4,
   },
   {
@@ -28,7 +28,7 @@ export const mealsData = [
       "Легка на шлунок гречка + смажене яйце з овочами до омлету + курочка",
     image: images.grechkaAndEgg,
     id: 1,
-    category: "Вдома",
+    category: "home",
     time: 4,
     recipe: ["Гречка", "Яйце", "Хліб", "Морожені овочі"],
   },
@@ -38,7 +38,7 @@ export const mealsData = [
     image: images.makaroons,
     price: 80,
     id: 2,
-    category: "Солодке",
+    category: "dessert",
     time: 4,
   },
   {
@@ -47,7 +47,7 @@ export const mealsData = [
       "Дуже смачна паста з песто та куркою, але дуже важко потім на шлунок від неї",
     image: images.pesto,
     id: 3,
-    category: "Вдома",
+    category: "home",
     time: 4,
   },
   {
@@ -55,7 +55,7 @@ export const mealsData = [
     description: "Вівсяний млинець (на смак фе)",
     image: images.pancakeWithCheese,
     id: 4,
-    category: "Вдома",
+    category: "home",
     time: 4,
   },
   {
@@ -63,7 +63,7 @@ export const mealsData = [
     description: "Дуже смачно, смак зелені топ",
     image: images.potatoShrooms,
     id: 5,
-    category: "Вдома",
+    category: "home",
     time: 4,
   },
 ];

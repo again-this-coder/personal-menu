@@ -8,6 +8,7 @@ import {
   updateShoppingItem,
 } from "redux/reducers/shopping/shoppingSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export const Meal: FC<MealType> = ({
   image,
@@ -19,7 +20,7 @@ export const Meal: FC<MealType> = ({
   const [ingredientQuantities, setIngredientQuantities] = useState(
     recipe?.map((element) => ({ product: element, quantity: 0 }))
   );
-
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const shoppingList = useSelector((state) => state.shopping.shopItems);
   const incrementQuantity = (index) => {
@@ -106,7 +107,7 @@ export const Meal: FC<MealType> = ({
           onPress={handleAddItem}
           disabled={isButtonDisabled}
         >
-          <Text style={styles.listButtonText}>Додати до списку покупок</Text>
+          <Text style={styles.listButtonText}>{t("meal.add")}</Text>
         </TouchableOpacity>
       )}
     </View>

@@ -5,21 +5,24 @@ import { categoriesData } from "./categoriesData";
 import { useSelector } from "react-redux";
 import { selectMeal } from "redux/reducers/meals/mealsSlice";
 import { MealType } from "src/data/mealData";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   setData: (arg: MealType[]) => void;
 };
 
 const Categories: FC<Props> = ({ setData }) => {
-  const [activeCategory, setActiveCategory] = useState("Всі");
+  const { t } = useTranslation();
+  const [activeCategory, setActiveCategory] = useState(
+    t("categories.options.all")
+  );
 
   const meals = useSelector(selectMeal);
   const favoriteMeals = useSelector((state) => state.favorites.ids);
-
   const handleActiveCategory = (name: string) => {
     setActiveCategory(name);
 
-    if (name === "Улюблене") {
+    if (t(`categories.options.${name}`) === t("categories.options.favorite")) {
       const newCategory = meals.filter((meal) =>
         favoriteMeals.includes(meal.id)
       );
@@ -27,7 +30,7 @@ const Categories: FC<Props> = ({ setData }) => {
       return;
     }
 
-    if (name === "Всі") {
+    if (t(`categories.options.${name}`) === t("categories.options.all")) {
       setData(meals);
     } else {
       const newCategory = meals.filter(({ category }) => category === name);
@@ -38,7 +41,7 @@ const Categories: FC<Props> = ({ setData }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>Популярні категорії</Text>
+        <Text style={styles.title}>{t("categories.title")}</Text>
       </View>
       <ScrollView
         contentContainerStyle={styles.categoryContainer}
@@ -50,12 +53,15 @@ const Categories: FC<Props> = ({ setData }) => {
             <TouchableOpacity
               style={[
                 styles.category,
-                activeCategory === category && styles.activeColor,
+                activeCategory === t(`categories.options.${category}`) &&
+                  styles.activeColor,
               ]}
               key={id}
               onPress={() => handleActiveCategory(category)}
             >
-              <Text style={styles.text}>{category}</Text>
+              <Text style={styles.text}>
+                {t(`categories.options.${category}`)}
+              </Text>
             </TouchableOpacity>
           );
         })}
