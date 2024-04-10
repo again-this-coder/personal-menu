@@ -1,12 +1,24 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React, { FC } from "react";
 import { styles } from "./styles";
+import NewMeal from "src/components/NewMeal/NewMeal";
+import { Formik } from "formik";
 
 const AddMealScreen: FC = () => {
+  const handleFormSubmit = () => {
+    console.log("formSubmitted");
+  };
+
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text>AddMealScreen</Text>
-    </View>
+      <Formik
+        onSubmit={handleFormSubmit}
+        initialValues={{ name: "test", age: 2 }}
+      >
+        <NewMeal />
+      </Formik>
+    </ScrollView>
   );
 };
 
