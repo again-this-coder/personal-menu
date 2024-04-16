@@ -16,7 +16,6 @@ const Categories: FC<Props> = ({ setData }) => {
   const [activeCategory, setActiveCategory] = useState(
     t("categories.options.all")
   );
-
   const meals = useSelector(selectMeal);
   const favoriteMeals = useSelector((state) => state.favorites.ids);
   const handleActiveCategory = (name: string) => {
@@ -53,8 +52,8 @@ const Categories: FC<Props> = ({ setData }) => {
             <TouchableOpacity
               style={[
                 styles.category,
-                activeCategory === t(`categories.options.${category}`) &&
-                  styles.activeColor,
+                t(`categories.options.${activeCategory}`) ===
+                  t(`categories.options.${category}`) && styles.activeColor,
               ]}
               key={id}
               onPress={() => handleActiveCategory(category)}
