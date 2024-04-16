@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { Text, ScrollView, SafeAreaView } from "react-native";
 import React, { FC } from "react";
 import { styles } from "./styles";
 import NewMeal from "src/components/NewMeal/NewMeal";
@@ -10,14 +10,16 @@ const AddMealScreen: FC = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text>AddMealScreen</Text>
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={{ name: "test", age: 2 }}
-      >
-        <NewMeal />
-      </Formik>
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
+        <Text>AddMealScreen</Text>
+        <Formik
+          onSubmit={handleFormSubmit}
+          initialValues={{ name: "test", age: 2 }}
+        >
+          <NewMeal />
+        </Formik>
+      </SafeAreaView>
     </ScrollView>
   );
 };
