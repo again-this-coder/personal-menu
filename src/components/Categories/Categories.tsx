@@ -14,7 +14,7 @@ type Props = {
 const Categories: FC<Props> = ({ setData }) => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState(
-    t("categories.options.all")
+    categoriesData[0].category
   );
   const meals = useSelector(selectMeal);
   const favoriteMeals = useSelector((state) => state.favorites.ids);
