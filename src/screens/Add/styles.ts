@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import { colors } from "src/assets/colors";
-import { scaleByWidth } from "src/assets/helpers";
+import { SCREEN_HEIGHT } from "src/assets/helpers";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    minHeight: SCREEN_HEIGHT,
     backgroundColor: colors.white,
     alignItems: "center",
     justifyContent: "center",
