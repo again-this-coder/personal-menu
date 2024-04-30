@@ -1,11 +1,15 @@
 import { StyleSheet } from "react-native";
 import { colors } from "src/assets/colors";
-import { SCREEN_HEIGHT, SCREEN_WIDTH, scaleByHeight, scaleByWidth } from "src/assets/helpers";
+import {
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+  scaleByHeight,
+  scaleByWidth,
+} from "src/assets/helpers";
 
 export const styles = StyleSheet.create({
   commonStyleModal: {
     margin: scaleByWidth(36),
-    backgroundColor: "red",
     shadowOpacity: 0,
   },
   flexContainer: {
