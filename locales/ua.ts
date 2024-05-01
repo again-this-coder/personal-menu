@@ -44,4 +44,11 @@ export const ua = {
     add: "Додати до списку покупок",
     time: "Час",
   },
+  modal: {
+    commonModal: {
+      closeButton: "Закрити",
+      title: "Готово!",
+      okBtn: "До списку",
+    },
+  },
 };
