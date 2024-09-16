@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import { MealType } from "src/data/mealData";
@@ -9,6 +9,8 @@ import {
 } from "redux/reducers/shopping/shoppingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { ModalContext } from "store/context/modalContext";
+import { Modals } from "../Modal/constants";
 
 export const Meal: FC<MealType> = ({
   image,
@@ -23,6 +25,8 @@ export const Meal: FC<MealType> = ({
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const shoppingList = useSelector((state) => state.shopping.shopItems);
+  const modalContext = useContext(ModalContext);
+
   const incrementQuantity = (index) => {
     const newQuantities = [...ingredientQuantities];
     newQuantities[index].quantity++;
@@ -64,7 +68,18 @@ export const Meal: FC<MealType> = ({
         };
         dispatch(addShoppingItem(shopItem));
       }
+      setIngredientQuantities(
+        ingredientQuantities.map((ingredient) => ({
+          ...ingredient,
+          quantity: 0,
+        }))
+      );
+      handleOpenModal();
     });
+  };
+
+  const handleOpenModal = () => {
+    modalContext.openModal(Modals.COMMON_MODAL);
   };
 
   return (

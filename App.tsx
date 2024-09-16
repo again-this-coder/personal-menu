@@ -63,17 +63,17 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Provider store={store}>
           <ApolloProvider client={apolloClient}>
-            <PaperProvider>
-              <ModalContextProvider>
+            <ModalContextProvider>
+              <PaperProvider>
                 <NavigationContainer
                   linking={linking}
                   fallback={<Text>Loading...</Text>}
                 >
-                  <ModalFabric />
                   <RootNavigation />
+                  <ModalFabric />
                 </NavigationContainer>
-              </ModalContextProvider>
-            </PaperProvider>
+              </PaperProvider>
+            </ModalContextProvider>
           </ApolloProvider>
         </Provider>
       </GestureHandlerRootView>

@@ -44,4 +44,11 @@ export const en = {
     add: "Add to shopping list",
     time: "Time",
   },
+  modal: {
+    commonModal: {
+      closeButton: "Close",
+      title: "Done",
+      okBtn: "Go to list",
+    },
+  },
 };

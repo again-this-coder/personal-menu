@@ -10,6 +10,10 @@ const textStyle = StyleSheet.create({
     fontSize: normalize(24),
     fontWeight: "600",
   },
+  titleS28W600: {
+    fontSize: normalize(28),
+    fontWeight: "600",
+  },
   titleS20W600: {
     fontSize: normalize(20),
     fontWeight: "600",
