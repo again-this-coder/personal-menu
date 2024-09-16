@@ -1,21 +1,22 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 import {
   Text,
   View,
   TouchableOpacity,
   Image,
   ImageSourcePropType,
-} from "react-native";
-import { styles } from "./styles";
-import { MaterialIcons } from "@expo/vector-icons";
-import { useDispatch, useSelector } from "react-redux";
+} from 'react-native';
+import { styles } from './styles';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addFavorite,
   removeFavorite,
-} from "redux/reducers/favorites/favorites";
-import { useNavigation } from "@react-navigation/native";
-import { Screens } from "src/navigation/screens";
-import { useTranslation } from "react-i18next";
+} from 'redux/reducers/favorites/favorites';
+import { useNavigation } from '@react-navigation/native';
+import { Screens } from 'src/navigation/screens';
+import { useTranslation } from 'react-i18next';
+import { RootState } from '../../../redux/store';
 
 export type RoundMealTypes = {
   id: number;
@@ -25,7 +26,7 @@ export type RoundMealTypes = {
 };
 
 const RoundMealCard: FC<RoundMealTypes> = ({ title, image, time, id }) => {
-  const isFavorite = useSelector((state) => state.favorites.ids.includes(id));
+  const isFavorite = useSelector((state: RootState) => state.favorites.ids.includes(id));
   const dispatch = useDispatch();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
@@ -57,7 +58,7 @@ const RoundMealCard: FC<RoundMealTypes> = ({ title, image, time, id }) => {
           <Text style={styles.title}>{title}</Text>
           <View style={styles.footer}>
             <View style={styles.footerLeft}>
-              <Text style={styles.time}>{t("meal.time")}</Text>
+              <Text style={styles.time}>{t('meal.time')}</Text>
               <Text>{time}</Text>
             </View>
             <TouchableOpacity

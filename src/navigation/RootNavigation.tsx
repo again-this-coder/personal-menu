@@ -8,6 +8,7 @@ import { auth } from "FirebaseConfig";
 import MealDetailsScreen from "src/screens/MealDetails/MealDetailsScreen";
 import { styles } from "./styles";
 import ProfileScreen from "src/screens/Profile/ProfileScreen";
+import AnimatingForFun from '../../AnimatedFun/AnimatingForFun';
 
 const RootNavigation = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -38,6 +39,7 @@ const RootNavigation = () => {
           headerShadowVisible: false,
         }}
       />
+      <Stack.Screen name={Screens.ANIMATING_FUN} component={AnimatingForFun}/>
     </Stack.Navigator>
   );
 };

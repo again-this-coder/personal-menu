@@ -7,6 +7,7 @@ export enum Screens {
   ADD_NEW_SCREEN = "Add",
   LOGIN_SCREEN = "Login",
   MEAL_DETAILS = "Meal details screen",
+  ANIMATING_FUN = "Animating fun",
 }
 
 export enum Stacks {

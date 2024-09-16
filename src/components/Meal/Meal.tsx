@@ -1,39 +1,44 @@
-import React, { FC, useContext, useState } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
-import { styles } from "./styles";
-import { MealType } from "src/data/mealData";
-import { AntDesign, Feather } from "@expo/vector-icons";
+import React, { FC, useContext, useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { styles } from './styles';
+import { MealType } from 'src/data/mealData';
+import { AntDesign, Feather } from '@expo/vector-icons';
 import {
   addShoppingItem,
   updateShoppingItem,
-} from "redux/reducers/shopping/shoppingSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { ModalContext } from "store/context/modalContext";
-import { Modals } from "../Modal/constants";
+} from 'redux/reducers/shopping/shoppingSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { RootState } from '../../../redux/store';
+import { ModalContext } from '../../../store/context/modalContext';
+import { useNavigation } from '@react-navigation/native';
+import { Modals } from '../Modal/constants';
 
 export const Meal: FC<MealType> = ({
-  image,
-  title,
-  price,
-  description,
-  recipe,
-}) => {
+                                     image,
+                                     title,
+                                     price,
+                                     description,
+                                     recipe,
+                                   }) => {
   const [ingredientQuantities, setIngredientQuantities] = useState(
-    recipe?.map((element) => ({ product: element, quantity: 0 }))
+    recipe?.map((element) => ({ product: element, quantity: 0 })),
   );
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const shoppingList = useSelector((state) => state.shopping.shopItems);
   const modalContext = useContext(ModalContext);
+  const navigation = useNavigation();
+  // Add the RootState type to useSelector to fix the TS issue
+  const shoppingList = useSelector((state: RootState) => state.shopping.shopItems);
 
   const incrementQuantity = (index) => {
     const newQuantities = [...ingredientQuantities];
     newQuantities[index].quantity++;
     setIngredientQuantities(newQuantities);
   };
+
   const isButtonDisabled = ingredientQuantities?.every(
-    (item) => item.quantity === 0
+    (item) => item.quantity === 0,
   );
 
   const decrementQuantity = (index) => {
@@ -49,7 +54,7 @@ export const Meal: FC<MealType> = ({
     shopItems.forEach((item) => {
       // Check if the item already exists in the shopping list
       const existingItem = shoppingList.find(
-        (shopItem) => shopItem.product === item.product
+        (shopItem) => shopItem.product === item.product,
       );
       if (existingItem) {
         // If the item exists, update its quantity
@@ -57,7 +62,7 @@ export const Meal: FC<MealType> = ({
           updateShoppingItem({
             id: existingItem.id,
             quantity: existingItem.quantity + item.quantity,
-          })
+          }),
         );
       } else {
         // If the item doesn't exist, add it to the shopping list
@@ -68,19 +73,16 @@ export const Meal: FC<MealType> = ({
         };
         dispatch(addShoppingItem(shopItem));
       }
-      setIngredientQuantities(
-        ingredientQuantities.map((ingredient) => ({
-          ...ingredient,
-          quantity: 0,
-        }))
-      );
-      handleOpenModal();
     });
+    let resetToZeroQuantities = ingredientQuantities.map(item => (
+      {
+        product: item.product,
+        quantity: 0,
+      }));
+    setIngredientQuantities(resetToZeroQuantities);
+    modalContext?.openModal(Modals.ADEED_TO_SHOPPING_LIST, navigation);
   };
 
-  const handleOpenModal = () => {
-    modalContext.openModal(Modals.COMMON_MODAL);
-  };
 
   return (
     <View style={styles.container}>
@@ -122,7 +124,7 @@ export const Meal: FC<MealType> = ({
           onPress={handleAddItem}
           disabled={isButtonDisabled}
         >
-          <Text style={styles.listButtonText}>{t("meal.add")}</Text>
+          <Text style={styles.listButtonText}>{t('meal.add')}</Text>
         </TouchableOpacity>
       )}
     </View>
