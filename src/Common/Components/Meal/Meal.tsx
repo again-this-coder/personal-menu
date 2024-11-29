@@ -1,0 +1,121 @@
+import React, { FC, useContext, useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { AntDesign, Feather } from '@expo/vector-icons';
+import { styles } from './styles';
+import { MealType } from '../../Data/MealData';
+import { useNavigation } from '@react-navigation/native';
+import { Modals } from '../Modal/constants';
+import {ModalContext} from "../../Store/Context/ModalContext";
+import {RootState} from "../../Store/Redux/Store";
+import {addShoppingItem, updateShoppingItem} from "../../Store/Redux/Reducers/Shopping/ShoppingSlice";
+
+export const Meal: FC<MealType> = ({image, title, price, description, recipe,}) => {
+  const [ingredientQuantities, setIngredientQuantities] = useState(
+    recipe?.map((element) => ({ product: element, quantity: 0 })),
+  );
+  const dispatch = useDispatch();
+  const modalContext = useContext(ModalContext);
+  const navigation = useNavigation();
+  // Add the RootState type to useSelector to fix the TS issue
+  const shoppingList = useSelector((state: RootState) => state.shopping.shopItems);
+
+  const incrementQuantity = (index) => {
+    const newQuantities = [...ingredientQuantities];
+    newQuantities[index].quantity++;
+    setIngredientQuantities(newQuantities);
+  };
+
+  const isButtonDisabled = ingredientQuantities?.every(
+    (item) => item.quantity === 0,
+  );
+
+  const decrementQuantity = (index) => {
+    const newQuantities = [...ingredientQuantities];
+    if (newQuantities[index].quantity > 0) {
+      newQuantities[index].quantity--;
+    }
+    setIngredientQuantities(newQuantities);
+  };
+
+  const handleAddItem = () => {
+    const shopItems = ingredientQuantities.filter((item) => item.quantity > 0);
+    shopItems.forEach((item) => {
+      // Check if the item already exists in the shopping list
+      const existingItem = shoppingList.find(
+        (shopItem) => shopItem.product === item.product,
+      );
+      if (existingItem) {
+        // If the item exists, update its quantity
+        dispatch(
+          updateShoppingItem({
+            id: existingItem.id,
+            quantity: existingItem.quantity + item.quantity,
+          }),
+        );
+      } else {
+        // If the item doesn't exist, add it to the shopping list
+        const shopItem = {
+          product: item.product,
+          quantity: item.quantity,
+          id: Math.random(),
+        };
+        dispatch(addShoppingItem(shopItem));
+      }
+    });
+    let resetToZeroQuantities = ingredientQuantities.map(item => (
+      {
+        product: item.product,
+        quantity: 0,
+      }));
+    setIngredientQuantities(resetToZeroQuantities);
+    modalContext?.openModal(Modals.ADEED_TO_SHOPPING_LIST, navigation);
+  };
+
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <View style={styles.backgroundBox1} />
+        <Image source={image} style={styles.image} resizeMode="cover" />
+        <View style={styles.backgroundBox2} />
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.mealName}>{title}</Text>
+        <Text style={styles.mealDescription}>{description}</Text>
+        {price && <Text style={styles.price}>{`${price} грн.`}</Text>}
+      </View>
+      {recipe?.length && (
+        <View style={styles.ingredientContainer}>
+          {ingredientQuantities.map((ingredient, index) => {
+            return (
+              <View style={styles.ingredient} key={index}>
+                <Text style={styles.ingredientText}>{ingredient.product}</Text>
+                <View style={styles.rightSide}>
+                  <Text style={styles.quantity}>{ingredient.quantity}</Text>
+                  <View style={styles.buttonsContainer}>
+                    <TouchableOpacity onPress={() => incrementQuantity(index)}>
+                      <AntDesign name="pluscircleo" size={28} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => decrementQuantity(index)}>
+                      <Feather name="minus" size={28} />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            );
+          })}
+        </View>
+      )}
+      {ingredientQuantities?.length && (
+        <TouchableOpacity
+          style={[styles.listButton, isButtonDisabled && styles.buttonDisabled]}
+          onPress={handleAddItem}
+          disabled={isButtonDisabled}
+        >
+          <Text style={styles.listButtonText}>Додати</Text>
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+};
