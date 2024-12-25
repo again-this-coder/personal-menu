@@ -7,7 +7,6 @@ import {
 } from "@expo/vector-icons";
 import HomeScreen from "../Home/HomeScreen";
 import ShoppingScreen from "../Shopping/ShoppingScreen";
-import ProfileScreen from "../Profile/ProfileScreen";
 import AddMealScreen from "../Add/AddMealScreen";
 import {Tabs} from "./Screens";
 export const HomeStackNavigation: FC = () => {
@@ -44,20 +43,6 @@ export const HomeStackNavigation: FC = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name={Tabs.PROFILE_SCREEN}
-        component={ProfileScreen}
-        options={{
-          tabBarIcon: ({ focused, color }) => (
-            <Ionicons
-              name="person-outline"
-              size={24}
-              color={focused ? color : "black"}
-            />
-          ),
-        }}
-      />
-
       <Tab.Screen
         name={Tabs.ADD_NEW_SCREEN}
         component={AddMealScreen}

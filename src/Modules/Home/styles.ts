@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import {colors} from "../../Common/Assets/Colors";
-import {scaleByHeight, scaleByWidth} from "../../Common/Assets/Helpers";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -8,16 +7,16 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   container: {
-    paddingHorizontal: scaleByWidth(20),
-    marginBottom: scaleByHeight(20),
+    paddingHorizontal: 20,
+    marginBottom: 20,
   },
   categories: {
-    marginVertical: scaleByHeight(24),
+    marginVertical:24,
   },
   mealsContainer: {
     flexWrap: "wrap",
     flexDirection: "row",
-    columnGap: scaleByWidth(30),
-    rowGap: scaleByHeight(12),
+    columnGap: 30,
+    rowGap: 12,
   },
 });

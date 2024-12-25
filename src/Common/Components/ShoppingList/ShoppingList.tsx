@@ -3,16 +3,12 @@ import React, { FC } from "react";
 import { styles } from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useDispatch, useSelector } from "react-redux";
-import {removeShoppingItem} from "../../Store/Redux/Reducers/Shopping/ShoppingSlice";
 import {images} from "../../Assets/Images";
 
 const ShoppingList: FC = () => {
-  const shoppingList = useSelector((state) => state.shopping.shopItems);
-  const dispatch = useDispatch();
+  const shoppingList = []
 
   const handleRemoveFromList = (id) => {
-    dispatch(removeShoppingItem(id));
   };
 
   return (

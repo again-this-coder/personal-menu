@@ -2,7 +2,6 @@ import { Text, ScrollView, SafeAreaView } from "react-native";
 import React, { FC } from "react";
 import { styles } from "./styles";
 import { Formik } from "formik";
-import NewMeal from "../../Common/Components/NewMeal/NewMeal";
 
 const AddMealScreen: FC = () => {
   const handleFormSubmit = () => {
@@ -17,7 +16,6 @@ const AddMealScreen: FC = () => {
           onSubmit={handleFormSubmit}
           initialValues={{ name: "test", age: 2 }}
         >
-          <NewMeal />
         </Formik>
       </SafeAreaView>
     </ScrollView>
