@@ -8,6 +8,5 @@ export enum Stacks {
 
 export enum Tabs {
   HOME_SCREEN = "Дім",
-  SHOPPING_SCREEN = "Покупки",
   ADD_NEW_SCREEN = "Додати",
 }
